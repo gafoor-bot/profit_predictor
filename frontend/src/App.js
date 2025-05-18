@@ -71,10 +71,10 @@ function App() {
     };
 
     try {
-      const response = await axios.post('http://localhost:3001/predict', data);
+      const response = await axios.post('https://profit-predictor.onrender.com/predict', data);
       setProfit(response.data.predicted_profit);
     } catch (err) {
-      setError('Error predicting profit. Make sure backend is running.');
+      setError('Error predicting profit. Please try again later.');
       console.error(err);
     } finally {
       setIsLoading(false);
