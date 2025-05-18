@@ -12,17 +12,25 @@ python3 --version
 echo "Installing Node.js dependencies..."
 npm install
 
+# Create and activate virtual environment
+echo "Creating Python virtual environment..."
+python3 -m venv venv
+source venv/bin/activate
+
 # Install Python dependencies
 echo "Installing Python dependencies..."
-python3 -m pip install --upgrade pip
-python3 -m pip install -r requirements.txt
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 
 # Print installed Python packages
 echo "Installed Python packages:"
-python3 -m pip list
+python -m pip list
 
 # Print current directory and contents
 echo "Current directory:"
 pwd
 echo "Directory contents:"
-ls -la 
+ls -la
+
+# Deactivate virtual environment
+deactivate 
