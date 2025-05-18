@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
+const axios = require('axios');
 
 const app = express();
 
@@ -118,7 +119,8 @@ app.post('/predict', (req, res) => {
         console.error('❌ Failed to start Python process:', err);
         res.status(500).json({ 
             error: 'Failed to start Python process',
-            details: err.message
+            details: err.message,
+            stack: err.stack
         });
     });
 
@@ -128,7 +130,8 @@ app.post('/predict', (req, res) => {
             console.error('❌ Python process failed with error:', errorOutput);
             res.status(500).json({ 
                 error: 'Python process failed',
-                details: errorOutput
+                details: errorOutput,
+                exitCode: code
             });
             return;
         }
@@ -143,7 +146,8 @@ app.post('/predict', (req, res) => {
                 res.status(500).json({ 
                     error: 'Failed to parse prediction',
                     details: err.message,
-                    raw_prediction: prediction
+                    raw_prediction: prediction,
+                    stack: err.stack
                 });
             }
         } else {
