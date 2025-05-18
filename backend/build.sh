@@ -15,6 +15,11 @@ npm install
 # Create and activate virtual environment
 echo "Creating Python virtual environment..."
 python3 -m venv venv
+chmod +x venv/bin/python
+chmod +x venv/bin/pip
+
+# Activate virtual environment
+echo "Activating virtual environment..."
 source venv/bin/activate
 
 # Install Python dependencies
@@ -31,6 +36,10 @@ echo "Current directory:"
 pwd
 echo "Directory contents:"
 ls -la
+
+# Print virtual environment contents
+echo "Virtual environment contents:"
+ls -la venv/bin/
 
 # Deactivate virtual environment
 deactivate 

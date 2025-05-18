@@ -77,9 +77,13 @@ function App() {
           'Content-Type': 'application/json'
         }
       });
+      console.log('Response from server:', response.data);
       setProfit(response.data.predicted_profit);
     } catch (err) {
-      console.error('Error details:', err.response?.data || err.message);
+      console.error('Full error object:', err);
+      console.error('Error response:', err.response?.data);
+      console.error('Error status:', err.response?.status);
+      console.error('Error message:', err.message);
       setError('Error predicting profit. Please try again later.');
     } finally {
       setIsLoading(false);
