@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
+import config from './config';
 
 function App() {
   const [inputs, setInputs] = useState({
@@ -71,11 +72,15 @@ function App() {
     };
 
     try {
-      const response = await axios.post('https://profit-predictor.onrender.com/predict', data);
+      const response = await axios.post(`${config.apiUrl}/predict`, data, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
       setProfit(response.data.predicted_profit);
     } catch (err) {
+      console.error('Error details:', err.response?.data || err.message);
       setError('Error predicting profit. Please try again later.');
-      console.error(err);
     } finally {
       setIsLoading(false);
     }
