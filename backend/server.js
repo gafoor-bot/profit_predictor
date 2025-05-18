@@ -88,7 +88,12 @@ app.post('/predict', (req, res) => {
     }
 
     console.log('Starting Python process...');
-    const python = spawn('python3', [pythonScriptPath]);
+    const python = spawn('python3', [pythonScriptPath], {
+        env: {
+            ...process.env,
+            PYTHONPATH: __dirname
+        }
+    });
     
     const input = JSON.stringify({
         rnd: rd_spend,
