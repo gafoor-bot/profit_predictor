@@ -2,8 +2,11 @@
 # exit on error
 set -o errexit
 
+# Install Node.js dependencies first
+npm install
+
 # Install Python dependencies
 pip install -r requirements.txt
 
-# Install Node.js dependencies
-npm install 
+# Print installed Python packages for verification
+pip list 
