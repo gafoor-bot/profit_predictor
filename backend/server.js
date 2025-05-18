@@ -86,12 +86,12 @@ app.post('/predict', (req, res) => {
     });
 });
 
-const PORT = 3001;  // Changed to port 3001
-app.listen(PORT, (err) => {
+const PORT = process.env.PORT || 3001;  // Use environment variable PORT or fallback to 3001
+app.listen(PORT, '0.0.0.0', (err) => {
     if (err) {
         console.error('Error starting server:', err);
         return;
     }
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
-    console.log('Test the server with: curl http://localhost:3001/test');
+    console.log(`🚀 Server running on port ${PORT}`);
+    console.log('Test the server with: curl http://localhost:' + PORT + '/test');
 });
