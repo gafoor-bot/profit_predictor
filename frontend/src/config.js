@@ -1,5 +1,5 @@
 const config = {
-    apiUrl: process.env.REACT_APP_API_URL || 'http://localhost:3001'
+    apiUrl: 'https://profit-predictor.onrender.com'
 };
 
-export default config; 
+export default config;
