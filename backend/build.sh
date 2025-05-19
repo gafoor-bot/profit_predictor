@@ -2,18 +2,20 @@
 # exit on error
 set -o errexit
 
-# Print Python version
+# Print Python version and path
 echo "Python version:"
-python3 --version
+/usr/bin/python3 --version
+echo "Python path:"
+which python3
 
-# Install Python dependencies
+# Install Python dependencies globally
 echo "Installing Python dependencies..."
-python3 -m pip install --upgrade pip
-python3 -m pip install -r requirements.txt
+sudo /usr/bin/python3 -m pip install --upgrade pip
+sudo /usr/bin/python3 -m pip install --no-cache-dir -r requirements.txt
 
 # Print installed packages
 echo "Installed Python packages:"
-python3 -m pip list
+/usr/bin/python3 -m pip list
 
 # Install Node.js dependencies
 echo "Installing Node.js dependencies..."

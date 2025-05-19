@@ -88,14 +88,15 @@ app.post('/predict', (req, res) => {
     }
 
     console.log('Starting Python process...');
-    // Use system Python on Render, local Python on Mac
-    const pythonPath = process.env.NODE_ENV === 'production' ? '/usr/bin/python3' : '/Library/Frameworks/Python.framework/Versions/3.12/bin/python3';
+    // Always use system Python on Render
+    const pythonPath = '/usr/bin/python3';
     console.log('Using Python path:', pythonPath);
     const python = spawn(pythonPath, [pythonScriptPath], {
         env: {
             ...process.env,
             PYTHONPATH: __dirname,
-            PATH: process.env.PATH
+            PATH: '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
+            PYTHONUNBUFFERED: '1'
         }
     });
     
