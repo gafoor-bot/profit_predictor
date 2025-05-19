@@ -88,19 +88,7 @@ app.post('/predict', (req, res) => {
     }
 
     console.log('Starting Python process...');
-    const pythonPath = path.join(__dirname, 'venv', 'bin', 'python');
-    console.log('Python path:', pythonPath);
-    
-    // Check if Python exists
-    if (!fs.existsSync(pythonPath)) {
-        console.error('Python executable not found at:', pythonPath);
-        return res.status(500).json({ 
-            error: 'Python executable not found',
-            details: `Python not found at ${pythonPath}`
-        });
-    }
-
-    const python = spawn(pythonPath, [pythonScriptPath], {
+    const python = spawn('python3', [pythonScriptPath], {
         env: {
             ...process.env,
             PYTHONPATH: __dirname
